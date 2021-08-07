@@ -62,19 +62,19 @@ open class DPTagTextView: UITextView {
     open var mentionSymbol: String = "@"
     open var hashTagSymbol: String = "#"
     open var textViewAttributes: [NSAttributedString.Key: Any] = {
-        [NSAttributedString.Key.foregroundColor: UIColor.black,
+        [NSAttributedString.Key.foregroundColor: UIColor.white,
          NSAttributedString.Key.font: UIFont.systemFont(ofSize: 15)]
     }()
 
     open var mentionTagTextAttributes: [NSAttributedString.Key: Any] = {
-        [NSAttributedString.Key.foregroundColor: UIColor.blue,
-         NSAttributedString.Key.backgroundColor: UIColor.lightGray,
+        [NSAttributedString.Key.foregroundColor: UIColor.init(red: 0/255.0, green: 248/255.0, blue: 243/255.0, alpha: 1.0),
+         NSAttributedString.Key.backgroundColor: UIColor.clear,
          NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 15)]
     }()
     
     open var hashTagTextAttributes: [NSAttributedString.Key: Any] = {
-        [NSAttributedString.Key.foregroundColor: UIColor.red,
-         NSAttributedString.Key.backgroundColor: UIColor.lightGray,
+        [NSAttributedString.Key.foregroundColor: UIColor.init(red: 0/255.0, green: 248/255.0, blue: 243/255.0, alpha: 1.0),
+         NSAttributedString.Key.backgroundColor: UIColor.clear,
          NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 15)]
     }()
     
@@ -113,7 +113,7 @@ public extension DPTagTextView {
         guard let allText = (allText == nil ? text : allText) else { return }
         
         let origin = (allText as NSString).substring(with: range)
-        let tag = isHashTag ? hashTagSymbol.appending(tagText) : tagText
+        let tag = isHashTag ? hashTagSymbol.appending(tagText) :  mentionSymbol.appending(tagText)
         let replace = isAppendSpace ? tag.appending(" ") : tag
         let changed = (allText as NSString).replacingCharacters(in: range, with: replace)
         let tagRange = NSMakeRange(range.location, tag.utf16.count)
@@ -372,4 +372,5 @@ internal extension String {
         }
     }
 }
+
 
